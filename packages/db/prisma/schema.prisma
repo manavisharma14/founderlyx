@@ -1,0 +1,157 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String      @id @default(cuid())
+  name                  String?
+  email                 String?     @unique
+  pass                  String?
+  emailVerified         DateTime?
+  image                 String?
+
+  domain                String?
+  resendDomainId        String?     @unique
+  sendingEmail          String?
+  domainVerified        Boolean    @default(false)
+  dnsRecords            Json?
+  sendingEnabled        Boolean   @default(false)
+
+  warmupMode            Boolean   @default(true)
+  warmupStartedAt       DateTime?
+  dailySendLimit        Int       @default(50)
+  warmupHealth          Int       @default(0)
+  lastWarmupIncrementAt DateTime?
+
+  accounts      Account[]
+  sessions      Session[]
+  contacts      Contact[]
+
+  warmupEmail   WarmupEmail[]
+
+  @@index([email])
+  @@unique([id, email])
+}
+
+model WarmupEmail {
+  id        String   @id @default(cuid())
+  userId    String
+  email     String
+  addedAt   DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, email])
+  @@index([userId])
+}
+
+//enum
+enum ContactStatus {
+  new
+  ready
+  sending
+  replied
+  interested
+  finished
+  dead
+  unsubscribed
+}
+
+model Contact {
+  id                  String @id @default(cuid())
+  userId              String
+  name                String
+  email               String
+  company             String?
+  status              ContactStatus @default(new)
+  createdAt           DateTime @default(now())
+  sendingAddress      String?
+  repliedAt           DateTime?
+  openedAt            DateTime?
+  sentAt              DateTime?
+  unsubscribed        Boolean @default(false)
+  unsubscribedAt      DateTime?
+  user                User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  nextSendAt          DateTime?   
+  sequenceStep        Int @default(0)  // 0 = opener, 1 = f1, 2 = f2, 3 = f3
+  messages            Message[]
+
+  draftOpener         String?
+  draftFollowup1      String?
+  draftFollowup2      String?
+  draftFollowup3      String?
+
+  @@unique([userId, email])
+  @@index([userId])
+  @@index([status])
+}
+model Waitlist {
+  id          String        @id @default(cuid())
+  email       String        @unique
+  joinedAt    DateTime      @default(now())
+
+  @@index([email])
+  @@index([joinedAt])
+}
+
+model Account {
+  id                String    @default(cuid())
+  userId            String
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type              String
+  provider          String
+  providerAccountId String
+
+  access_token      String?   @db.Text
+  refresh_token     String?   @db.Text
+
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?   @db.Text
+  session_state     String?
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id            String      @id @default(cuid())
+  sessionToken  String      @unique
+  userId        String
+  user          User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expires       DateTime
+}
+
+model VerificationToken {
+  identifier          String
+  token               String
+  expires             DateTime
+
+  @@unique([identifier, token])
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  contactId String
+  contact   Contact  @relation(fields: [contactId], references: [id])
+  direction String   // "outbound" or "inbound"
+  from      String
+  to        String
+  subject   String
+  text      String?
+  html      String?
+  createdAt DateTime @default(now())
+}

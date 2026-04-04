@@ -1,0 +1,3 @@
+-- AlterTable
+ALTER TABLE "User" ADD COLUMN     "dailySendLimit" INTEGER NOT NULL DEFAULT 50,
+ADD COLUMN     "warmupMode" BOOLEAN NOT NULL DEFAULT true;

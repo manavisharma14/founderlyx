@@ -1,0 +1,24 @@
+{
+    "compilerOptions": {
+      "target": "ES2020",
+      "lib": ["ES2020"],
+      "module": "CommonJS",
+      "moduleResolution": "Node",
+      "strict": true,
+      "esModuleInterop": true,
+      "skipLibCheck": true,
+      "forceConsistentCasingInFileNames": true,
+  
+      /* IMPORTANT FOR MONOREPO */
+      "baseUrl": ".",
+      "paths": {
+        "@repo/db": ["packages/db/src"]
+      }
+    },
+  
+    /* Tell TypeScript to check all apps + packages */
+    "include": [
+      "apps",
+      "packages"
+    ]
+  }

@@ -1,0 +1,50 @@
+{
+  "name": "web",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@auth/prisma-adapter": "^2.11.1",
+    "@aws-sdk/client-ses": "^3.933.0",
+    "@radix-ui/react-alert-dialog": "^1.1.15",
+    "@radix-ui/react-slot": "^1.2.4",
+    "@repo/db": "workspace:*",
+    "class-variance-authority": "^0.7.1",
+    "client-ses": "link:@aws/sdk/client-ses",
+    "clsx": "^2.1.1",
+    "form-data": "^4.0.5",
+    "lucide-react": "^0.553.0",
+    "mailgun": "^0.5.0",
+    "mailgun.js": "^12.4.0",
+    "next": "16.0.7",
+    "next-auth": "^4.24.13",
+    "openai": "^6.9.1",
+    "papaparse": "^5.5.3",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "react-dropzone": "^14.3.8",
+    "react-hot-toast": "^2.6.0",
+    "resend": "^6.5.2",
+    "sonner": "^2.0.7",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/mailgun-js": "^0.22.19",
+    "@types/node": "^20",
+    "@types/papaparse": "^5.5.0",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.0.3",
+    "tailwindcss": "^4",
+    "tw-animate-css": "^1.4.0",
+    "typescript": "^5"
+  }
+}

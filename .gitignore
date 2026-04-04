@@ -1,0 +1,14 @@
+node_modules/
+.pnpm-store/
+apps/web/node_modules/
+**/node_modules/node_modules/
+.pnpm-store/
+.pnpm-store/
+apps/web/.next/
+apps/web/.next/
+packages/*/node_modules/
+packages/db/prisma/generated/
+.env
+.env
+.turbo/
+.next/c
