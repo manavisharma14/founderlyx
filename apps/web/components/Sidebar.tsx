@@ -37,7 +37,7 @@ export default function Sidebar() {
           isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         )}
       >
-        <h1 className="text-xl font-bold mb-10 text-gray-900">Klaro</h1>
+        <h1 className="text-xl font-bold mb-10 text-gray-900">Klario</h1>
 
         <nav className="space-y-1">
           {nav.map(item => (

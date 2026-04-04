@@ -20,7 +20,7 @@ export default function Navbar(){
           href="/" 
           className="text-2xl font-bold text-gray-900 hover:opacity-80 transition"
         >
-          klaro
+          klario
         </Link>
 
         {/* Right side */}

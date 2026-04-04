@@ -30,7 +30,7 @@ export default function HomePage() {
           {/* Primary CTA */}
           <div className="mt-10 flex justify-center">
             <Button size="lg" className="px-10 py-6 text-lg">
-              Start Using Klaro
+              Start Using Klario
             </Button>
           </div>
 
@@ -86,7 +86,7 @@ export default function HomePage() {
           {/* Header */}
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight">
-              How Klaro Works
+              How Klario Works
             </h2>
             <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
               From setup to booked meetings — fully automated.
@@ -105,7 +105,7 @@ export default function HomePage() {
                 Connect Your Domain
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Klaro sets up your domain automatically with SPF, DKIM, and DMARC, and begins warming it so your emails land safely.
+                Klario sets up your domain automatically with SPF, DKIM, and DMARC, and begins warming it so your emails land safely.
               </p>
             </div>
 
@@ -161,7 +161,7 @@ export default function HomePage() {
 
           {/* Differentiation */}
           <p className="mt-4 text-center text-xs text-gray-400">
-            Klaro is built for thoughtful, effective outbound — not mass spam tools.
+            Klario is built for thoughtful, effective outbound — not mass spam tools.
           </p>
 
         </div>
